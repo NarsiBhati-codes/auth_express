@@ -25,7 +25,7 @@ app.post("/signin", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  const token = "jshfhsfshfjsfjshfjsjfsjfhjshfs";
+  const token = "jshfhsfshfjsfjshfjsjfsjfhjshf";
 
   let userFound = false;
   users = users.map((user) => {

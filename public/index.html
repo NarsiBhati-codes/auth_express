@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>week 6 auth and middlewares</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+    <script>
+        const signup = async () => {
+            const username = Document.getElementById('signup-username').value;
+            const password = Document.getElementById('signup-password').value;
+
+            const response = axios.post("http://localhost:3000/signup", {
+                username: username,
+                password: password
+            })
+
+            alert(response.message);
+        }
+        const signin = async () => {
+            const username = Document.getElementById('signin-username').value;
+            const password = Document.getElementById('signin-password').value;
+
+            const response = await axios.post("http://localhost:3000/signup", {
+                username: username,
+                password: password
+            })
+            localStorage.setItem("token", response.token)
+        }
+        const getUserInformation = async () => {
+            const response = axios.get('http://localhost:3000/me', {
+                header: {
+                    token: localStorage.getItem("token")
+                }
+            })
+
+        } 
+    </script>
+
+</head>
+<div>
+    Signup </b>
+    <input id="signup-username" type="text" name="username" placeholder="username">
+    <input id="signup-password" type="text" name="password" placeholder="password">
+    <button onclick="signup()">Submit</button>
+</div>
+
+<div>
+    Signin </b>
+    <input id="signin-username" type="text" name="username" placeholder="username">
+    <input id="signin-username" type="text" name="password" placeholder="password">
+    <button onclick="signin()">Submit</button>
+</div>
+
+<div>
+    User Information
+    <div id="information"></div>
+</div>
+
+<body>
+
+</body>
+
+</html>
